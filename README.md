@@ -57,7 +57,14 @@ Configurar Docker
 -> nest g service tweets/check-new-tweets
 -> npm install @nestjs/schedule
 
+-> Se precisar outra forma de cron
+-> docker-compose exec app sh
+-> npm install --save-deb @types/cron
 
+-> docker-compose exec app sh
+-> npm install cache-manager-redis-store
+-> npm install cache-manager
+-> npm install @types/cache-manager --save-dev
 
 
 <p align="center">
