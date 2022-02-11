@@ -1,10 +1,11 @@
+import { Tweet, TweetSchema } from './schemas/tweet.schema';
+import { MongooseModule } from '@nestjs/mongoose';
 import { CacheModule, Module } from '@nestjs/common';
 import { TweetsService } from './tweets.service';
 import { TweetsController } from './tweets.controller';
-import { MongooseModule } from '@nestjs/mongoose';
-import { Tweet, TweetSchema } from './schemas/tweet.schema';
 import { CheckNewTweetsTask } from './check-new-tweets/check-new-tweets.task';
 import * as redisStore from 'cache-manager-redis-store';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports:[
@@ -13,9 +14,10 @@ import * as redisStore from 'cache-manager-redis-store';
       host: 'redis',
       port: 6379
     }),
-    MongooseModule.forFeature([
-      { name: Tweet.name, schema: TweetSchema }
-    ])
+    MongooseModule.forFeature([{ name: Tweet.name, schema: TweetSchema }]),
+    BullModule.registerQueue({
+      name: 'emails',
+    }),
   ],
   controllers: [TweetsController],
   providers: [TweetsService, CheckNewTweetsTask]

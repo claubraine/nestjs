@@ -84,6 +84,10 @@ REDIS
 -> Y
 
 
+-> docker-compose exec app sh
+-> npm install bull @nestjs/bull
+-> npm install @types/bull --save-dev
+
 
 
 <p align="center">

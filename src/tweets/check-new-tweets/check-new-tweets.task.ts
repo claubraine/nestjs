@@ -2,6 +2,8 @@ import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
 import { Interval } from '@nestjs/schedule';
 import { TweetsService } from '../tweets.service';
+import { Queue } from 'bull';
+import { InjectQueue } from '@nestjs/bull';
 
 @Injectable()
 export class CheckNewTweetsTask {
@@ -11,6 +13,8 @@ export class CheckNewTweetsTask {
     private tweetService: TweetsService,
     @Inject(CACHE_MANAGER)
     private cache: Cache,
+    @InjectQueue('emails')
+    private emailsQueue: Queue,
   ) {}
 
   @Interval(5000)
