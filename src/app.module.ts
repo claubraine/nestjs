@@ -4,6 +4,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TweetsModule } from './tweets/tweets.module';
+import { MailListModule } from './mail-list/mail-list.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { TweetsModule } from './tweets/tweets.module';
       useNewUrlParser: true
     }),
     ScheduleModule.forRoot(),
-    TweetsModule],
+    TweetsModule,
+    MailListModule],
   controllers: [AppController],
   providers: [AppService],
 })

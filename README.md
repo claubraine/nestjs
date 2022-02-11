@@ -67,6 +67,25 @@ Configurar Docker
 -> npm install @types/cache-manager --save-dev
 
 
+-----------------------------
+REDIS
+-> docker-compose exec redis sh
+--> redis-cli
+---> keys '*'
+---> get 'tweet-offset'
+---> FLUSHALL           - limpar
+
+------------------------------
+
+
+-> docker-compose exec app sh
+-> nest g resource mail-list
+-> REST API
+-> Y
+
+
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
